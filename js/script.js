@@ -11,9 +11,10 @@ function play() {
   const grado = [100, 81, 49];
   const cellNumbers = grado [difficolta - 1];
   const cellRow = Math.sqrt(cellNumbers);
+  let giocoFinito = true;
   
   const BOMB_NUMB = 16;
-  const bombs = createBombs();
+  let bombs = createBombs();
   console.log(bombs);
   
   document.querySelector('main').innerHTML = "";
@@ -39,9 +40,28 @@ function play() {
       square.style.width = squareSize;
       square.style.height = squareSize;
 
+      giocoFinito = false;
+
       square.addEventListener('click', function(event){
-        square.classList.add('active');
-        console.log(event.target.innerText);
+
+        const cellaCliccata = parseInt(this.innerText);
+
+        console.log('cella cliccata', cellaCliccata);      
+
+        if (bombs.includes(cellaCliccata) == true  ){
+          
+          square.classList.add('danger');
+          giocoFinito = true;
+          
+        }else{
+          
+          square.classList.add('active');
+          
+          
+        }
+        console.log('bomb', bombs);
+
+
       })
       
       document.querySelector('main').append(campo);
@@ -50,7 +70,7 @@ function play() {
   }
   
   function createBombs() {
-    const bombs = [];
+    let bombs = [];
 
     while (bombs.length < BOMB_NUMB) {
       const bomb = getRandomNumb (1, cellNumbers);
@@ -62,7 +82,8 @@ function play() {
     return bombs;
   }
 
-}
+} 
+
 
 
 function getRandomNumb(min, max) {
