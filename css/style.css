@@ -67,6 +67,15 @@ main{
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.square.active{
+  background-color: #6394e9;
+}
+
+.square.danger{
+  background-color: brown;
 }
 
 .none{
