@@ -11,7 +11,7 @@ function play() {
   const grado = [100, 81, 49];
   const cellNumbers = grado [difficolta - 1];
   const cellRow = Math.sqrt(cellNumbers);
-  let giocoFinito = true;
+  let giocoFinito = false;
   
   const BOMB_NUMB = 16;
   let bombs = createBombs();
@@ -40,15 +40,15 @@ function play() {
       square.style.width = squareSize;
       square.style.height = squareSize;
 
-      giocoFinito = false;
-
+      
       square.addEventListener('click', function(event){
-
+        
         const cellaCliccata = parseInt(this.innerText);
-
+        
         console.log('cella cliccata', cellaCliccata);      
-
-        if (bombs.includes(cellaCliccata) == true  ){
+        
+        giocoFinito = false;
+        if (bombs.includes(cellaCliccata) == true ){
           
           square.classList.add('danger');
           giocoFinito = true;
